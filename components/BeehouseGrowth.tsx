@@ -63,7 +63,7 @@ export default function BeehouseGrowth() {
           Hive Splitting
         </h2>
         <p className="lead mb-10">
-          BEEcome a Hive Splitter and multiply your hives.
+          Bee-come a Hive Splitter and multiply your hives.
         </p>
 
         <div className="flex flex-col gap-8 items-center transition-opacity duration-700">
