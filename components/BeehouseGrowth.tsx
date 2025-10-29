@@ -18,21 +18,19 @@ export default function BeehouseGrowth() {
     return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   }, []);
 
-  const timerRef = useRef<number | null>(null);
+  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
-    if (isFading) return; // stop animating while fading
+    if (isFading) return;
 
     if (stageIdx < STAGES.length - 1) {
-      timerRef.current = window.setTimeout(() => {
+      timerRef.current = setTimeout(() => {
         setStageIdx((i) => i + 1);
         setVisibleStages((prev) => [...prev, [STAGES[stageIdx + 1]]]);
       }, STEP_MS);
     } else {
-      // After reaching final stage → pulse → fade → restart
-      timerRef.current = window.setTimeout(() => {
+      timerRef.current = setTimeout(() => {
         setIsFading(true);
-        // after fade finishes, reset
         setTimeout(() => {
           setStageIdx(0);
           setVisibleStages([[1]]);
@@ -41,7 +39,12 @@ export default function BeehouseGrowth() {
       }, PAUSE_AT_END);
     }
 
-    return () => timerRef.current && clearTimeout(timerRef.current);
+    return () => {
+      if (timerRef.current) {
+        clearTimeout(timerRef.current);
+        timerRef.current = null;
+      }
+    };
   }, [stageIdx, isFading]);
 
   return (
