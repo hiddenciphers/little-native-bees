@@ -1,26 +1,72 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --color-bee-yellow: #f6c94c;
+  --color-bee-dark: #c08a12;
+  --color-gum-green: #3e6b55;
+  --color-gum-pale: #e5f0ea;
+  --color-earth-brown: #5a4632;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-background);
+  color: var(--color-foreground);
+  font-family: var(--font-sans, Arial, Helvetica, sans-serif);
+  min-height: 100vh;
+}
+
+/* Utility helpers */
+.container {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: var(--max-width-content);
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius-xl);
+  font-weight: 500;
+  box-shadow: var(--shadow-soft);
+  transition: background 0.2s ease;
+}
+
+.btn-primary {
+  background-color: var(--color-bee-yellow);
+  color: var(--color-earth-brown);
+}
+.btn-primary:hover {
+  background-color: var(--color-bee-dark);
+}
+
+.btn-ghost {
+  background-color: var(--color-gum-pale);
+  color: var(--color-gum-green);
+}
+.btn-ghost:hover {
+  background-color: color-mix(in srgb, var(--color-gum-green) 10%, white);
+}
+
+.card {
+  background: var(--color-bee-yellow);
+  border-radius: var(--radius-2xl);
+  box-shadow: var(--shadow-soft);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  padding: 1.5rem;
+}
+
+.kicker {
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: color-mix(in srgb, var(--color-gum-green) 80%, black);
+  font-size: 0.875rem;
+}
+
+.lead {
+  font-size: 1.125rem;
+  color: #4b5563;
 }
